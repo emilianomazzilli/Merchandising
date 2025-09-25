@@ -16,6 +16,9 @@
         <a href="index.html">
             <img class="header__logo" src="img/image.png" alt="Logotipo">
         </a>
+        <button id="carrito-btn" class="carrito__btn" aria-label="Abrir carrito">
+            🛒 Carrito
+        </button>
     </header>
 
     <nav class="navegacion">
@@ -23,10 +26,31 @@
         <a class="navegacion__enlace " href="nosotros.html">Nosotros</a>
     </nav>
 
-    <main class="contenedor">
-        <h1>Nuestros Productos</h1>
+    <aside class="categorias">
+        <h2 class="categorias__titulo">Categorías</h2>
+        <ul class="categorias__lista">
+            <li><a href="#" class="categorias__enlace" data-categoria="frontend">Frontend</a></li>
+            <li><a href="#" class="categorias__enlace" data-categoria="backend">Backend</a></li>
+            <li><a href="#" class="categorias__enlace" data-categoria="herramientas">Herramientas</a></li>
+            <li><a href="#" class="categorias__enlace" data-categoria="otros">Otros</a></li>
+        </ul>
+    </aside>
 
-        <div class="grid">
+    <div id="carrito-panel" class="carrito__panel">
+        <div class="carrito__header">
+            <h2>Carrito</h2>
+            <button id="carrito-cerrar" class="carrito__cerrar" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="carrito-contenido" class="carrito__contenido">
+            <p>El carrito está vacío.</p>
+        </div>
+        <div class="carrito__footer">
+            <button id="carrito-comprar" class="carrito__comprar">Comprar</button>
+        </div>
+    </div>
+    <main class="contenedor">
+    <h1>Nuestros Productos</h1>
+    <div class="grid" id="productos-grid">
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/3.jpeg" alt="imagen camisa">
@@ -175,7 +199,7 @@
     <footer class="footer">
         <p class="footer__texto">Gen Software Store - Todos los derechos Reservados 2025.</p>
     </footer>
-
+    <script src="js/main.js"></script>
 </body>
 
 </html>

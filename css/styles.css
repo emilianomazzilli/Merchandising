@@ -135,7 +135,7 @@ h3 {
 }
 
 .producto__imagen {
-    height: 350px;
+    height: 450px;
 }
 
 .producto__nombre {
@@ -208,6 +208,131 @@ h3 {
     margin: 0;
     padding: 1rem;
 }
+
+/* Carrito Panel Lateral */
+.carrito__btn {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    background: var(--secundario);
+    color: var(--blanco);
+    border: none;
+    font-size: 2rem;
+    font-family: var(--fuentePrincipal);
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.carrito__panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: var(--primarioOscuro);
+    color: var(--blanco);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.carrito__panel.activo {
+    right: 0;
+}
+
+.carrito__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid var(--secundario);
+}
+
+.carrito__cerrar {
+    background: none;
+    border: none;
+    color: var(--secundario);
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.carrito__contenido {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.carrito__footer {
+    padding: 2rem;
+    border-top: 1px solid var(--secundario);
+    text-align: center;
+}
+
+.carrito__comprar {
+    background: var(--secundario);
+    color: var(--blanco);
+    border: none;
+    font-size: 2rem;
+    font-family: var(--fuentePrincipal);
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+/* Categorías */
+.categorias {
+    position: absolute;
+    left: 0;
+    top: 12rem;
+    width: 20rem;
+    background-color: var(--primarioOscuro);
+    padding: 2rem 1rem;
+    border-radius: 0 1rem 1rem 0;
+    z-index: 10;
+}
+
+.categorias__titulo {
+    color: var(--secundario);
+    font-family: var(--fuentePrincipal);
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.categorias__lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.categorias__enlace {
+    display: block;
+    color: var(--blanco);
+    font-size: 2rem;
+    font-family: var(--fuentePrincipal);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--primario);
+    transition: color .3s;
+}
+
+.categorias__enlace:hover,
+.categorias__enlace--activo {
+    color: var(--secundario);
+}
+
+@media (max-width: 768px) {
+    .categorias {
+        position: static;
+        width: 100%;
+        border-radius: 0;
+        margin-bottom: 2rem;
+    }
+}
+
 
 /* Bloques */
 .bloques {
