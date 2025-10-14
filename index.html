@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenSoftware Store</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&family=Staatliches&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <header class="header" id="container">
+        <a href=" index.html" class="header__brand" aria-label="Ir al inicio">
+            <img class="header__logo" src="img/image.png" alt="Logotipo">
+        </a>
+        <div id="flip">
+            <div class="track">
+                <div>
+                    <div>elegancia</div>
+                </div>
+                <div>
+                    <div>innovacion</div>
+                </div>
+                <div>
+                    <div>simplicidad</div>
+                </div>
+                <div>
+                    <div>somos gen</div>
+                </div>
+            </div>
+        </div>
+
+        <button id="carrito-btn" class="carrito__btn" aria-label="Abrir carrito">
+            🛒 Carrito
+        </button>
+    </header>
+
+
+    <nav class="navegacion">
+        <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
+        <a class="navegacion__enlace " href="nosotros.html">Nosotros</a>
+    </nav>
+
+    <aside class="categorias">
+        <div class="categorias__contenedor">
+            <button class="categorias__toggle" id="categorias-toggle">
+                <span>Categorías</span>
+                <span class="categorias__icono">▼</span>
+            </button>
+            <div class="categorias__menu" id="categorias-menu">
+                <ul class="categorias__lista">
+                    <li><a href="#" class="categorias__enlace categorias__enlace--activo"
+                            data-categoria="otros">Todas</a></li>
+                    <li><a href="#" class="categorias__enlace" data-categoria="ropa">Ropa</a></li>
+                    <li><a href="#" class="categorias__enlace" data-categoria="hogar">Hogar</a></li>
+                    <li><a href="#" class="categorias__enlace" data-categoria="varios">Varios</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <div id="carrito-panel" class="carrito__panel">
+        <div class="carrito__header">
+            <h2>Carrito</h2>
+            <button id="carrito-cerrar" class="carrito__cerrar" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="carrito-contenido" class="carrito__contenido">
+            <p>El carrito está vacío.</p>
+        </div>
+        <div class="carrito__footer">
+            <button id="carrito-comprar" class="carrito__comprar">Comprar</button>
+        </div>
+    </div>
+    <main class="contenedor">
+        <h1>Nuestros Productos</h1>
+        <div class="banner-instrucciones">
+            <div class="banner-instrucciones__contenido">
+                <span class="banner-instrucciones__icono">🛍️</span>
+                <div class="banner-instrucciones__texto">
+                    <h3 class="banner-instrucciones__titulo">¿Cómo Comprar?</h3>
+                    <p class="banner-instrucciones__descripcion">
+                        Haz clic en cualquier producto para ver detalles, seleccionar talla y agregar al carrito
+                    </p>
+                </div>
+                <span class="banner-instrucciones__flecha">👇</span>
+            </div>
+        </div>
+        <div class="grid" id="productos-grid">
+            <div class="producto">
+                <a href="producto.html?nombre=Camiseta%20Roja&img=img/3.jpeg&precio=$1200">
+                    <img class="producto__imagen" src="img/3.jpeg" alt="Camiseta roja">
+                </a>
+                <div class="producto__informacion">
+                    <p class="producto__nombre">Camiseta Roja</p>
+                    <p class="producto__precio">$1200</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Camiseta%20Azul&img=img/4.jpeg&precio=$1200">
+                    <img class="producto__imagen" src="img/4.jpeg" alt="Camiseta azul">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Camiseta Azul</p>
+                    <p class="producto__precio">$1200</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Camiseta%20Verde&img=img/6.jpeg&precio=$1200">
+                    <img class="producto__imagen" src="img/6.jpeg" alt="Camiseta verde">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Camiseta Verde</p>
+                    <p class="producto__precio">$1200</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Camiseta%20Rosa&img=img/7.jpeg&precio=$1200">
+                    <img class="producto__imagen" src="img/7.jpeg" alt="Camiseta rosa">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Camiseta Rosa</p>
+                    <p class="producto__precio">$1200</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Camiseta%20DuG&img=img/5.jpeg&precio=$1200">
+                    <img class="producto__imagen" src="img/5.jpeg" alt="Camiseta DuG">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Camiseta DuG</p>
+                    <p class="producto__precio">$1200</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=T.GEN%20slogan&img=img/t1.png&precio=$300">
+                    <img class="producto__imagen" src="img/t1.png" alt="T.GEN slogan">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">T.GEN slogan</p>
+                    <p class="producto__precio">$300</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=T.GEN%20poema&img=img/t2.png&precio=$300">
+                    <img class="producto__imagen" src="img/t2.png" alt="T.GEN poema">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">T.GEN poema</p>
+                    <p class="producto__precio">$300</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Posavasos%20GEN&img=img/pv1.jpeg&precio=$150">
+                    <img class="producto__imagen" src="img/pv1.jpeg" alt="Posavasos GEN">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Posavasos GEN</p>
+                    <p class="producto__precio">$150</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Posavasos%20GEN%20Alt.&img=img/pv1.jpeg&precio=$150">
+                    <img class="producto__imagen" src="img/pv2.jpeg" alt="Posavasos GEN Alt.">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Posavasos GEN Alt.</p>
+                    <p class="producto__precio">$150</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Funda%20GEN&img=img/f1.png&precio=$500">
+                    <img class="producto__imagen" src="img/f1.png" alt="Funda GEN">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Funda GEN</p>
+                    <p class="producto__precio">$500</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Funda%20GEN%20Alt.&img=img/f2.png&precio=$500">
+                    <img class="producto__imagen" src="img/f2.png" alt="Funda GEN Alt.">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Funda GEN Alt.</p>
+                    <p class="producto__precio">$500</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Diario%20GEN&img=img/lb1.png&precio=$380">
+                    <img class="producto__imagen" src="img/lb1.png" alt="Diario GEN">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Diario GEN</p>
+                    <p class="producto__precio">$380</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Visera%20GEN&img=img/g1.png&precio=$800">
+                    <img class="producto__imagen" src="img/g1.png" alt="Visera GEN">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Visera GEN</p>
+                    <p class="producto__precio">$800</p>
+                </div>
+            </div>
+
+            <div class="producto">
+                <a href="producto.html?nombre=Pescador%20GEN&img=img/g2.png&precio=$700">
+                    <img class="producto__imagen" src="img/g2.png" alt="Pescador GEN">
+                </a>
+                <div class="producto__informacion" class=" ">
+                    <p class="producto__nombre">Pescador GEN</p>
+                    <p class="producto__precio">$700</p>
+                </div>
+            </div>
+
+            <div class="grafico grafico--camisa"></div>
+            <div class="grafico grafico--node"></div>
+        </div>
+    </main>
+
+    <div id="modal-compra" class="modal-compra">
+        <div class="modal-compra__contenido">
+            <span id="modal-compra-cerrar" class="modal-compra__cerrar">&times;</span>
+            <h2>Datos de Pago y Envío</h2>
+            <form id="form-compra" class="form-compra">
+                <div class="form-group">
+                    <label>Nombre completo:</label>
+                    <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label>Dirección de entrega:</label>
+                    <input type="text" name="direccion" placeholder="Ej: Av. 18 de Julio 1234" required>
+                </div>
+                <div class="form-group">
+                    <label>Código postal:</label>
+                    <input type="text" name="postal" maxlength="5" placeholder="Ej: 11200" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono:</label>
+                    <input type="tel" name="telefono" placeholder="Ej: 099123456" required>
+                </div>
+                <div class="form-group">
+                    <label>Número de tarjeta:</label>
+                    <input type="text" name="tarjeta" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-group">
+                    <label>Vencimiento (MM/AA):</label>
+                    <input type="text" name="vencimiento" maxlength="5" placeholder="12/25" required>
+                </div>
+                <div class="form-group">
+                    <label>CVV (3 dígitos):</label>
+                    <input type="text" name="cvv" maxlength="4" placeholder="123" required>
+                </div>
+                <button type="submit" class="modal-compra__enviar">Finalizar compra</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="footer__texto">Gen Software Store - Todos los derechos Reservados 2025.</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

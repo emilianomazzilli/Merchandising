@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontEnd Store</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html">
+            <img class="header__logo" src="img/image.png" alt="Logotipo">
+        </a>
+        <button id="carrito-btn" class="carrito__btn" aria-label="Abrir carrito">
+            🛒 Carrito
+        </button>
+    </header>
+
+    <nav class="navegacion">
+        <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
+        <a class="navegacion__enlace" href="nosotros.html">Nosotros</a>
+    </nav>
+    <div id="carrito-panel" class="carrito__panel">
+        <div class="carrito__header">
+            <h2>Carrito</h2>
+            <button id="carrito-cerrar" class="carrito__cerrar" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="carrito-contenido" class="carrito__contenido">
+            <p>El carrito está vacío.</p>
+        </div>
+        <div class="carrito__footer">
+            <button id="carrito-comprar" class="carrito__comprar">Comprar</button>
+        </div>
+    </div>
+    <main class="contenedor">
+        <h1>Producto</h1>
+
+        <div class="camisa">
+            <img class="camisa__imagen" src="img/3.jpeg" alt="Imagen del Producto">
+
+            <div class="camisa__contenido">
+                <p>Maecenas consectetur ultricies mi vel venenatis. Curabitur risus tellus, congue non tellus at, semper
+                    dapibus turpis. Duis pellentesque, risus sit amet placerat porttitor, tortor augue volutpat ante,
+                    non dignissim odio ligula at arcu.</p>
+
+                <p class="camisa__precio">$25</p>
+
+                <form class="formulario">
+                    <select class="formulario__campo">
+                        <option disabled selected>-- Seleccionar Talla --</option>
+                        <option>Chica</option>
+                        <option>Mediana</option>
+                        <option>Grande</option>
+                    </select>
+                    <input class="formulario__campo" type="number" placeholder="Cantidad" min="1">
+                    <input class="formulario__submit" type="button" value="Agregar al Carrito">
+                </form>
+            </div>
+        </div>
+    </main>
+    <div id="modal-compra" class="modal-compra">
+        <div class="modal-compra__contenido">
+            <span id="modal-compra-cerrar" class="modal-compra__cerrar">&times;</span>
+            <h2>Datos de Pago y Envío</h2>
+            <form id="form-compra" class="form-compra">
+                <div class="form-group">
+                    <label>Nombre completo:</label>
+                    <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label>Dirección de entrega:</label>
+                    <input type="text" name="direccion" placeholder="Ej: Av. 18 de Julio 1234" required>
+                </div>
+                <div class="form-group">
+                    <label>Código postal:</label>
+                    <input type="text" name="postal" maxlength="5" placeholder="Ej: 11200" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono:</label>
+                    <input type="tel" name="telefono" placeholder="Ej: 099123456" required>
+                </div>
+                <div class="form-group">
+                    <label>Número de tarjeta:</label>
+                    <input type="text" name="tarjeta" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-group">
+                    <label>Vencimiento (MM/AA):</label>
+                    <input type="text" name="vencimiento" maxlength="5" placeholder="12/25" required>
+                </div>
+                <div class="form-group">
+                    <label>CVV (3 dígitos):</label>
+                    <input type="text" name="cvv" maxlength="4" placeholder="123" required>
+                </div>
+                <button type="submit" class="modal-compra__enviar">Finalizar compra</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="footer__texto">Gen Software Store - Todos los derechos Reservados 2025.</p>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const params = new URLSearchParams(window.location.search);
+            const nombre = params.get('nombre') || 'Producto';
+            const img = params.get('img') || 'img/3.jpeg';
+            const precio = params.get('precio') || '$25';
+
+            // Cambia el título y la imagen
+            document.querySelector('h1').textContent = nombre;
+            const imgTag = document.querySelector('.camisa__imagen');
+            imgTag.src = img;
+            imgTag.alt = nombre;
+
+            // Opcional: muestra el precio en algún lugar
+            let precioP = document.querySelector('.camisa__precio');
+            if (!precioP) {
+                precioP = document.createElement('p');
+                precioP.className = 'camisa__precio';
+                imgTag.parentElement.appendChild(precioP);
+            }
+            precioP.textContent = precio;
+        });
+    </script>
+</body>
+
+</html>
