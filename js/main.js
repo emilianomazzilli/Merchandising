@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   function guardarCarrito() {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage;
   }
 
   // asegurar mínimo 1 en todos los inputs numéricos (cantidad)
@@ -243,51 +243,69 @@ document.addEventListener("DOMContentLoaded", function () {
   // Producto.html - configurar página según params y ocultar select si no es ropa
   (function () {
     const params = new URLSearchParams(window.location.search);
-    const img = params.get("img") || "img/3.jpeg";
-    const precio = params.get("precio") || "$25";
+    const nombre =
+      params.get("nombre") ||
+      document.querySelector("h1")?.textContent?.trim() ||
+      "Producto";
+    const img =
+      params.get("img") ||
+      document.querySelector(".camisa__imagen")?.src ||
+      "img/3.jpeg";
+    const precio =
+      params.get("precio") ||
+      document.querySelector(".camisa__precio")?.textContent ||
+      "$25";
     const categoria = params.get("categoria") || "otros";
 
-    // Cambia el título y la imagen
+    // título
     const h1 = document.querySelector("h1");
     if (h1) h1.textContent = nombre;
+
+    // imagen
     const imgTag = document.querySelector(".camisa__imagen");
     if (imgTag) {
       imgTag.src = img;
       imgTag.alt = nombre;
     }
 
-    // Opcional: muestra el precio en algún lugar
+    // precio (crear si no existe)
     let precioP = document.querySelector(".camisa__precio");
-    if (!precioP && imgTag) {
+    if (!precioP) {
       precioP = document.createElement("p");
       precioP.className = "camisa__precio";
-      imgTag.parentElement.appendChild(precioP);
+      const cont =
+        document.querySelector(".camisa__contenido") ||
+        imgTag?.parentElement ||
+        document.querySelector("main.contenedor");
+      cont?.appendChild(precioP);
     }
     if (precioP) precioP.textContent = precio;
 
-    // Si estamos en producto.html y existe el formulario, indicar categoría y ajustar campos
+    // formulario: categoria, talles y min cantidad
     const formularioLocal = document.querySelector(".formulario");
     if (formularioLocal) {
       formularioLocal.dataset.categoria = categoria;
 
       const selectTalla = formularioLocal.querySelector("select");
       if (categoria !== "ropa") {
-        // ocultar select de talles para categorías que no son ropa
-        if (selectTalla) {
-          selectTalla.style.display = "none";
-        }
+        if (selectTalla) selectTalla.style.display = "none";
       } else {
         if (selectTalla) {
           selectTalla.style.display = "";
+          // asegurar opciones S, M, L, XL
+          selectTalla.innerHTML =
+            "<option disabled selected>-- Seleccionar Talla --</option>" +
+            '<option value="S">S</option>' +
+            '<option value="M">M</option>' +
+            '<option value="L">L</option>' +
+            '<option value="XL">XL</option>';
         }
       }
 
-      // asegurar que el input cantidad tenga min=1
       const cantidadInput = formularioLocal.querySelector(
         'input[type="number"]'
       );
       if (cantidadInput) cantidadInput.min = 1;
-      // si se ocultó el select, no debería ser requerido al agregar (ya manejado en submit)
     }
   })();
 
