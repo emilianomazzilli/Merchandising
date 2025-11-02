@@ -52,9 +52,10 @@
                 <form class="formulario">
                     <select class="formulario__campo">
                         <option disabled selected>-- Seleccionar Talla --</option>
-                        <option>Chica</option>
-                        <option>Mediana</option>
-                        <option>Grande</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
                     </select>
                     <input class="formulario__campo" type="number" placeholder="Cantidad" min="1">
                     <input class="formulario__submit" type="button" value="Agregar al Carrito">
@@ -104,29 +105,6 @@
         <p class="footer__texto">Gen Software Store - Todos los derechos Reservados 2025.</p>
     </footer>
     <script src="js/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const params = new URLSearchParams(window.location.search);
-            const nombre = params.get('nombre') || 'Producto';
-            const img = params.get('img') || 'img/3.jpeg';
-            const precio = params.get('precio') || '$25';
-
-            // Cambia el título y la imagen
-            document.querySelector('h1').textContent = nombre;
-            const imgTag = document.querySelector('.camisa__imagen');
-            imgTag.src = img;
-            imgTag.alt = nombre;
-
-            // Opcional: muestra el precio en algún lugar
-            let precioP = document.querySelector('.camisa__precio');
-            if (!precioP) {
-                precioP = document.createElement('p');
-                precioP.className = 'camisa__precio';
-                imgTag.parentElement.appendChild(precioP);
-            }
-            precioP.textContent = precio;
-        });
-    </script>
 </body>
 
 </html>
