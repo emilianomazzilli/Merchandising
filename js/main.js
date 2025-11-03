@@ -293,9 +293,7 @@ if (productoForm) {
       document.querySelector("main.contenedor");
 
     // insertar antes del formulario si existe, sino al inicio del contenedor, sino append
-    const formularioLocalTemp = cont
-      ? cont.querySelector(".formulario")
-      : document.querySelector(".formulario");
+    const formularioLocalTemp = cont ? cont.querySelector(".formulario") : document.querySelector(".formulario");
     if (cont && formularioLocalTemp) {
       cont.insertBefore(precioP, formularioLocalTemp);
     } else if (cont) {
