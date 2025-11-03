@@ -146,8 +146,8 @@ function renderCarrito() {
             <div class="carrito__item">
                 <img src="${item.img}" alt="${item.nombre}">
                 <div class="carrito__item-info">
-                    <span class="carrito__item-nombre">${item.nombre}</span>
-                    <span class="carrito__item-precio">${item.precio}</span>
+                <span class="carrito__item-nombre">${item.nombre}</span>
+                <span class="carrito__item-precio">${item.precio}</span>
                     <span class="carrito__item-cantidad">Cantidad: ${item.cantidad}</span>
                 </div>
                 <button class="carrito__eliminar" data-idx="${idx}">✕</button>
@@ -193,69 +193,69 @@ if (productoForm) {
   });
 
   const submitBtn = productoForm.querySelector(".formulario__submit");
-  submitBtn.addEventListener("click", function (e) {
-    e.preventDefault();
+  if (submitBtn) {
+    // <-- añadido chequeo para evitar errores si no existe
+    submitBtn.addEventListener("click", function (e) {
+      e.preventDefault();
 
-    // determinar categoria (primero intentar dataset, si no, leer de URL)
-    const categoriaForm =
-      productoForm.dataset.categoria ||
-      new URLSearchParams(window.location.search).get("categoria") ||
-      "otros";
+      // determinar categoria (primero intentar dataset, si no, leer de URL)
+      const categoriaForm =
+        productoForm.dataset.categoria ||
+        new URLSearchParams(window.location.search).get("categoria") ||
+        "otros";
 
-    const tallaSelect = productoForm.querySelector("select");
-    const cantidadInput = productoForm.querySelector('input[type="number"]');
-    const cantidad = parseInt(cantidadInput.value) || 1;
+      const tallaSelect = productoForm.querySelector("select");
+      const cantidadInput = productoForm.querySelector('input[type="number"]');
+      const cantidad = parseInt(cantidadInput.value) || 1;
 
-    if (cantidad < 1) {
-      alert("La cantidad debe ser al menos 1");
-      return;
-    }
-
-    // Si es ropa, validar talla; si no, saltar la validación de talla
-    let talla = "";
-    if (categoriaForm === "ropa") {
-      if (!tallaSelect) {
-        alert("Selecciona una talla");
+      if (cantidad < 1) {
+        alert("La cantidad debe ser al menos 1");
         return;
       }
-      talla = tallaSelect.value;
-      if (!talla || talla.startsWith("--")) {
-        alert("Selecciona una talla");
-        return;
+
+      // Si es ropa, validar talla; si no, saltar la validación de talla
+      let talla = "";
+      if (categoriaForm === "ropa") {
+        if (!tallaSelect) {
+          alert("Selecciona una talla");
+          return;
+        }
+        talla = tallaSelect.value;
+        if (!talla || talla.startsWith("--")) {
+          alert("Selecciona una talla");
+          return;
+        }
       }
-    }
 
-    const nombreBase = document.querySelector("h1").textContent.trim();
-    const nombre =
-      categoriaForm === "ropa" ? `${nombreBase} (${talla})` : nombreBase;
-    const precio = document.querySelector(".camisa__precio")
-      ? document.querySelector(".camisa__precio").textContent
-      : "$25";
-    const img = document.querySelector(".camisa__imagen").src;
-    let existente = carrito.find((p) => p.nombre === nombre);
-    if (existente) {
-      existente.cantidad += cantidad;
-    } else {
-      carrito.push({ nombre, precio, img, cantidad });
-    }
-    renderCarrito();
-    carritoPanel.classList.add("activo");
+      const nombreBase = document.querySelector("h1").textContent.trim();
+      const nombre =
+        categoriaForm === "ropa" ? `${nombreBase} (${talla})` : nombreBase;
+      const img = document.querySelector(".camisa__imagen").src;
+      let existente = carrito.find((p) => p.nombre === nombre);
+      if (existente) {
+        existente.cantidad += cantidad;
+      } else {
+        carrito.push({ nombre, precio, img, cantidad });
+      }
+      renderCarrito();
+      carritoPanel.classList.add("activo");
 
-    // Mensaje de confirmación
-    const mensaje = document.createElement("div");
-    mensaje.className = "mensaje-agregado";
-    mensaje.textContent = `✓ ${cantidad} ${nombreBase} agregado al carrito`;
-    document.body.appendChild(mensaje);
+      // Mensaje de confirmación
+      const mensaje = document.createElement("div");
+      mensaje.className = "mensaje-agregado";
+      mensaje.textContent = `✓ ${cantidad} ${nombreBase} agregado al carrito`;
+      document.body.appendChild(mensaje);
 
-    setTimeout(() => {
-      mensaje.classList.add("mostrar");
-    }, 10);
+      setTimeout(() => {
+        mensaje.classList.add("mostrar");
+      }, 10);
 
-    setTimeout(() => {
-      mensaje.classList.remove("mostrar");
-      setTimeout(() => mensaje.remove(), 300);
-    }, 2000);
-  });
+      setTimeout(() => {
+        mensaje.classList.remove("mostrar");
+        setTimeout(() => mensaje.remove(), 300);
+      }, 2000);
+    });
+  }
 }
 
 // Producto.html - configurar página según params y ocultar select si no es ropa
@@ -282,7 +282,7 @@ if (productoForm) {
     imgTag.alt = nombre;
   }
 
-  // precio (crear si no existe)
+  // precio (crear si no existe) — obtener directamente desde params al asignar
   let precioP = document.querySelector(".camisa__precio");
   if (!precioP) {
     precioP = document.createElement("p");
@@ -291,9 +291,22 @@ if (productoForm) {
       document.querySelector(".camisa__contenido") ||
       imgTag?.parentElement ||
       document.querySelector("main.contenedor");
-    cont?.appendChild(precioP);
+
+    // insertar antes del formulario si existe, sino al inicio del contenedor, sino append
+    const formularioLocalTemp = cont
+      ? cont.querySelector(".formulario")
+      : document.querySelector(".formulario");
+    if (cont && formularioLocalTemp) {
+      cont.insertBefore(precioP, formularioLocalTemp);
+    } else if (cont) {
+      cont.insertBefore(precioP, cont.firstChild);
+    } else {
+      document.body.appendChild(precioP);
+    }
   }
-  if (precioP) precioP.textContent = precio;
+  // usar el parámetro "precio" si existe, sino fallback
+  const precioParam = params.get("precio");
+  if (precioP) precioP.textContent = precioParam ? precioParam : "";
 
   // formulario: categoria, talles y min cantidad
   const formularioLocal = document.querySelector(".formulario");
