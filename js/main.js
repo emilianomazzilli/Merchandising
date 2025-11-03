@@ -128,9 +128,6 @@ if (productosGrid && categoriaLinks.length > 0) {
       }
     });
   });
-
-  // NO agregar botones de "Agregar al carrito" en index.html
-  // Los productos solo se pueden agregar desde producto.html
 }
 
 function renderCarrito() {
@@ -206,7 +203,7 @@ if (productoForm) {
 
       const tallaSelect = productoForm.querySelector("select");
       const cantidadInput = productoForm.querySelector('input[type="number"]');
-      const cantidad = parseInt(cantidadInput.value) || 1;
+      const cantidad = parseInt(cantidadInput?.value || "1", 10) || 1;
 
       if (cantidad < 1) {
         alert("La cantidad debe ser al menos 1");
@@ -227,10 +224,21 @@ if (productoForm) {
         }
       }
 
-      const nombreBase = document.querySelector("h1").textContent.trim();
+      const nombreBase =
+        document.querySelector("h1")?.textContent?.trim() || "Producto";
       const nombre =
         categoriaForm === "ropa" ? `${nombreBase} (${talla})` : nombreBase;
-      const img = document.querySelector(".camisa__imagen").src;
+      const img = document.querySelector(".camisa__imagen")?.src || "";
+
+      // <-- CORRECCIÓN: obtener precio desde DOM o params antes de usarlo
+      const precioEl = document.querySelector(".camisa__precio");
+      const precioFromParams = new URLSearchParams(window.location.search).get(
+        "precio"
+      );
+      const precio =
+        (precioEl && precioEl.textContent.trim()) ||
+        (precioFromParams ? precioFromParams : "$0");
+
       let existente = carrito.find((p) => p.nombre === nombre);
       if (existente) {
         existente.cantidad += cantidad;
@@ -238,7 +246,7 @@ if (productoForm) {
         carrito.push({ nombre, precio, img, cantidad });
       }
       renderCarrito();
-      carritoPanel.classList.add("activo");
+      if (carritoPanel) carritoPanel.classList.add("activo");
 
       // Mensaje de confirmación
       const mensaje = document.createElement("div");
@@ -293,7 +301,9 @@ if (productoForm) {
       document.querySelector("main.contenedor");
 
     // insertar antes del formulario si existe, sino al inicio del contenedor, sino append
-    const formularioLocalTemp = cont ? cont.querySelector(".formulario") : document.querySelector(".formulario");
+    const formularioLocalTemp = cont
+      ? cont.querySelector(".formulario")
+      : document.querySelector(".formulario");
     if (cont && formularioLocalTemp) {
       cont.insertBefore(precioP, formularioLocalTemp);
     } else if (cont) {
