@@ -4,12 +4,13 @@ function guardarCarrito() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Panel lateral carrito
-  const carritoBtn = document.getElementById("carrito-btn");
-  const carritoPanel = document.getElementById("carrito-panel");
-  const carritoCerrar = document.getElementById("carrito-cerrar");
+// Asegurar referencias al panel/carrito en ámbito global (evita ReferenceError)
+var carritoPanel = document.getElementById("carrito-panel");
+var carritoBtn = document.getElementById("carrito-btn");
+var carritoCerrar = document.getElementById("carrito-cerrar");
 
+document.addEventListener("DOMContentLoaded", function () {
+  // Panel lateral carrito (usa las referencias globales)
   if (carritoBtn && carritoPanel) {
     carritoBtn.addEventListener("click", () => {
       carritoPanel.classList.add("activo");
@@ -268,10 +269,6 @@ if (productoForm) {
     params.get("img") ||
     document.querySelector(".camisa__imagen")?.src ||
     "img/3.jpeg";
-  const precio =
-    params.get("precio") ||
-    document.querySelector(".camisa__precio")?.textContent ||
-    "$25";
   const categoria = params.get("categoria") || "otros";
 
   // título
